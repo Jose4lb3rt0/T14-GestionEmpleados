@@ -1,23 +1,25 @@
 package ventanas;
 
 import com.toedter.calendar.JDateChooser;
-import dao.EmpleadoDAO;
+import dao.EmpleadoDAOImpl;
+import dao.implement.EmpleadoDao;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import modelos.Empleado;
 
 public class Form extends javax.swing.JFrame {
-    private EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+    private EmpleadoDao empleadoDao = new EmpleadoDAOImpl();
     private JDateChooser jdcFechaNacimiento;
     private JDateChooser jdcFechaInicio;
     private JDateChooser jdcFechaFin;
     
     public Form() {
         initComponents();
-        
         jdcFechaNacimiento = new JDateChooser();
         jdcFechaNacimiento.setBounds(135, 125, 77, 30); 
         jpnDatos1.add(jdcFechaNacimiento); 
@@ -276,6 +278,15 @@ public class Form extends javax.swing.JFrame {
 
         jLabel7.setText("Teléfono:");
 
+        txtNumeroDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNumeroDocumentoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDocumentoKeyTyped(evt);
+            }
+        });
+
         cboTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "Pasaporte" }));
 
         jLabel17.setText("Estado civil:");
@@ -353,7 +364,7 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jpnDatos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnDatos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -795,7 +806,6 @@ public class Form extends javax.swing.JFrame {
         jpnDatos8.setBackground(new java.awt.Color(153, 153, 153));
 
         btnGuardar.setBackground(new java.awt.Color(153, 255, 153));
-        btnGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pietro\\Desktop\\JOSE TAREAS APUNTES\\Semestre 5\\3. TAREAS - SEMINARIO DE COMPLEMENTACIÓN PRÁCTICA II\\Tareas\\TAREA T13\\T13-Empleados\\src\\main\\java\\ventanas\\Imagenes\\save.png")); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("");
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -806,7 +816,6 @@ public class Form extends javax.swing.JFrame {
         });
 
         btnEditar.setBackground(new java.awt.Color(255, 204, 102));
-        btnEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pietro\\Desktop\\JOSE TAREAS APUNTES\\Semestre 5\\3. TAREAS - SEMINARIO DE COMPLEMENTACIÓN PRÁCTICA II\\Tareas\\TAREA T13\\T13-Empleados\\src\\main\\java\\ventanas\\Imagenes\\Edit.png")); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setToolTipText("");
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -817,7 +826,6 @@ public class Form extends javax.swing.JFrame {
         });
 
         btnEliminar.setBackground(new java.awt.Color(255, 102, 102));
-        btnEliminar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pietro\\Desktop\\JOSE TAREAS APUNTES\\Semestre 5\\3. TAREAS - SEMINARIO DE COMPLEMENTACIÓN PRÁCTICA II\\Tareas\\TAREA T13\\T13-Empleados\\src\\main\\java\\ventanas\\Imagenes\\eliminar.png")); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setToolTipText("");
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -828,7 +836,6 @@ public class Form extends javax.swing.JFrame {
         });
 
         btnCancelar.setBackground(new java.awt.Color(153, 204, 255));
-        btnCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pietro\\Desktop\\JOSE TAREAS APUNTES\\Semestre 5\\3. TAREAS - SEMINARIO DE COMPLEMENTACIÓN PRÁCTICA II\\Tareas\\TAREA T13\\T13-Empleados\\src\\main\\java\\ventanas\\Imagenes\\cancel.png")); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("");
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -839,7 +846,6 @@ public class Form extends javax.swing.JFrame {
         });
 
         btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpiar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pietro\\Desktop\\JOSE TAREAS APUNTES\\Semestre 5\\3. TAREAS - SEMINARIO DE COMPLEMENTACIÓN PRÁCTICA II\\Tareas\\TAREA T13\\T13-Empleados\\src\\main\\java\\ventanas\\Imagenes\\basket.png")); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setToolTipText("");
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -950,7 +956,7 @@ public class Form extends javax.swing.JFrame {
         int selectedRow = tableEmpleados.getSelectedRow();
         if (selectedRow != -1){
             int idEmpleado = (int) tableEmpleados.getValueAt(selectedRow, 0);
-            Empleado empleado = empleadoDAO.obtenerEmpleadoPorId(idEmpleado);
+            Empleado empleado = empleadoDao.obtenerEmpleadoPorId(idEmpleado);
             if (empleado != null){
                 txtNombres.setText(empleado.getNombres());
                 txtApellidos.setText(empleado.getApellidos());
@@ -1010,7 +1016,7 @@ public class Form extends javax.swing.JFrame {
         empleado.setResolucionProblemas(chkResolucionProblemas.isSelected());
         empleado.setLiderazgo(chkLiderazgo.isSelected());
         empleado.setAdaptabilidad(chkAdaptabilidad.isSelected());
-        empleadoDAO.insertarEmpleado(empleado);
+        
         cargarDatosEnTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -1044,7 +1050,7 @@ public class Form extends javax.swing.JFrame {
         empleado.setResolucionProblemas(chkResolucionProblemas.isSelected());
         empleado.setLiderazgo(chkLiderazgo.isSelected());
         empleado.setAdaptabilidad(chkAdaptabilidad.isSelected());
-        empleadoDAO.actualizarEmpleado(empleado);
+        empleadoDao.actualizarEmpleado(empleado);
         cargarDatosEnTabla();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -1059,7 +1065,7 @@ public class Form extends javax.swing.JFrame {
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 try {
-                    empleadoDAO.eliminarEmpleado(idEmpleado);
+                    empleadoDao.eliminarEmpleado(idEmpleado);
                     JOptionPane.showMessageDialog(this, "Registro eliminado correctamente.");
                     cargarDatosEnTabla(); 
                 } catch (Exception e) {
@@ -1080,6 +1086,19 @@ public class Form extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNumeroDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoKeyPressed
+        if (txtNumeroDocumento.getText().trim().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtTelefono.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtNumeroDocumentoKeyPressed
+
+    private void txtNumeroDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoKeyTyped
+        empleadoDao.soloNcarc(8, txtNumeroDocumento, evt);
+        empleadoDao.soloTodosNum(evt);
+    }//GEN-LAST:event_txtNumeroDocumentoKeyTyped
 
     private void limpiar(){
         txtNombres.setText("");
@@ -1118,7 +1137,6 @@ public class Form extends javax.swing.JFrame {
         chkLiderazgo.setSelected(false);
         chkAdaptabilidad.setSelected(false);
     }
-    
     private void setEstadoCivil(String estadoCivil) {
         if ("Soltero".equals(estadoCivil)) {
             rdbSoltero.setSelected(true);
@@ -1186,7 +1204,7 @@ public class Form extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tableEmpleados.getModel();
         model.setRowCount(0);
 
-        List<Empleado> empleados = empleadoDAO.obtenerTodosLosEmpleados();
+        List<Empleado> empleados = empleadoDao.obtenerTodosLosEmpleados();
 
         for (Empleado empleado : empleados) {
             String nombreCompleto = empleado.getNombres() + " " + empleado.getApellidos();

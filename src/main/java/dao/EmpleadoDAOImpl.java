@@ -1,6 +1,8 @@
 package dao;
 
 import config.Conexion;
+import dao.implement.EmpleadoDao;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,10 +10,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTextField;
 import modelos.Empleado;
 
-public class EmpleadoDAO {
+public class EmpleadoDAOImpl implements EmpleadoDao {
     
+    @Override
     public void insertarEmpleado(Empleado empleado) {
         String sql = "INSERT INTO Empleado (nombres, apellidos, direccion, fechaNacimiento, correo, sexo, tipoDocumento, numeroDocumento, telefono, estadoCivil, informacionAdicional, fechaInicio, fechaFin, departamento, salario, cargo, estadoLaboral, metodoPago, ultimaEmpresa, anosExperiencia, comunicacion, analisis, trabajoEquipo, resolucionProblemas, liderazgo, adaptabilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -59,6 +63,7 @@ public class EmpleadoDAO {
         }
     }
     
+    @Override
     public void actualizarEmpleado(Empleado empleado) {
         String sql = "UPDATE Empleado SET nombres = ?, apellidos = ?, direccion = ?, fechaNacimiento = ?, correo = ?, sexo = ?, tipoDocumento = ?, numeroDocumento = ?, telefono = ?, estadoCivil = ?, informacionAdicional = ?, fechaInicio = ?, fechaFin = ?, departamento = ?, salario = ?, cargo = ?, estadoLaboral = ?, metodoPago = ?, ultimaEmpresa = ?, anosExperiencia = ?, comunicacion = ?, analisis = ?, trabajoEquipo = ?, resolucionProblemas = ?, liderazgo = ?, adaptabilidad = ? WHERE idEmpleado = ?";
         try (Connection con = Conexion.getConexion(); PreparedStatement pst = con.prepareStatement(sql)) {
@@ -102,6 +107,7 @@ public class EmpleadoDAO {
         }
     }
     
+    @Override
     public void eliminarEmpleado(int idEmpleado) {
         String sql = "DELETE FROM Empleado WHERE idEmpleado = ?";
         try (Connection con = Conexion.getConexion(); PreparedStatement pst = con.prepareStatement(sql)) {
@@ -118,6 +124,7 @@ public class EmpleadoDAO {
         }
     }
     
+    @Override
     public Empleado obtenerEmpleadoPorId(int idEmpleado) {
         String sql = "SELECT * FROM Empleado WHERE idEmpleado = ?";
         try (Connection con = Conexion.getConexion(); PreparedStatement pst = con.prepareStatement(sql)) {
@@ -161,6 +168,7 @@ public class EmpleadoDAO {
         return null;
     }
     
+    @Override
     public List<Empleado> obtenerTodosLosEmpleados() {
         List<Empleado> empleados = new ArrayList<>();
         String sql = "SELECT idEmpleado, nombres, apellidos, correo, telefono, salario FROM Empleado";
@@ -180,5 +188,20 @@ public class EmpleadoDAO {
             e.printStackTrace();
         }
         return empleados;
+    }
+    
+    @Override
+    public void soloNcarc (int numcarac, JTextField tf, KeyEvent e){
+        if (tf.getText().length() >= numcarac){
+            e.consume();
+        }
+    }
+    
+    @Override
+    public void soloTodosNum (KeyEvent e){
+        char c = e.getKeyChar();
+        if (c < 48 || c > 57){
+            e.consume();
+        }
     }
 }
