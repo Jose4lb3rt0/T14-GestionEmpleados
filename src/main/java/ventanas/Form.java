@@ -172,7 +172,7 @@ public class Form extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addContainerGap(634, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +182,7 @@ public class Form extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 60));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 60));
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -197,15 +197,50 @@ public class Form extends javax.swing.JFrame {
 
         jLabel4.setText("Dirección:");
 
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombresKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
+
         txtApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidosActionPerformed(evt);
+            }
+        });
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyTyped(evt);
+            }
+        });
+
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
             }
         });
 
         jLabel8.setText("Fecha de nacimiento:");
 
         jLabel11.setText("Correo electrónico:");
+
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
+            }
+        });
 
         jLabel12.setText("Sexo:");
 
@@ -284,6 +319,15 @@ public class Form extends javax.swing.JFrame {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroDocumentoKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -383,6 +427,11 @@ public class Form extends javax.swing.JFrame {
 
         txtInformacionAdicional.setColumns(20);
         txtInformacionAdicional.setRows(5);
+        txtInformacionAdicional.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtInformacionAdicionalKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtInformacionAdicional);
 
         javax.swing.GroupLayout jpnDatos3Layout = new javax.swing.GroupLayout(jpnDatos3);
@@ -678,6 +727,21 @@ public class Form extends javax.swing.JFrame {
 
         jLabel16.setText("Cargo:");
 
+        txtSalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSalarioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSalarioKeyTyped(evt);
+            }
+        });
+
+        txtCargo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCargoKeyPressed(evt);
+            }
+        });
+
         jLabel18.setText("Departamento:");
 
         cboDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Innovación y Desarrollo", "Sostenibilidad", "Experiencia del Cliente", "Comunicación Interna", "Análisis de Datos", "Recursos Humanos ", "Tecnología de la Información (TI) y Ciberseguridad", "Marketing Digital y Contenidos", "Capacitación y Desarrollo Profesional", "Responsabilidad Social Empresarial (RSE)" }));
@@ -864,14 +928,17 @@ public class Form extends javax.swing.JFrame {
             .addGroup(jpnDatos8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpnDatos8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnDatos8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpnDatos8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                    .addGroup(jpnDatos8Layout.createSequentialGroup()
+                        .addGroup(jpnDatos8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addGroup(jpnDatos8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
+                    .addGroup(jpnDatos8Layout.createSequentialGroup()
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpnDatos8Layout.setVerticalGroup(
@@ -886,8 +953,8 @@ public class Form extends javax.swing.JFrame {
                     .addComponent(btnEliminar)
                     .addComponent(btnCancelar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -903,20 +970,23 @@ public class Form extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpnDatos8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jpnDatos8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap(66, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -925,10 +995,10 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addContainerGap(575, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 360, 1160));
+        jPanel2.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 410, 1160));
 
         jScrollPane1.setViewportView(jPanel2);
 
@@ -989,6 +1059,41 @@ public class Form extends javax.swing.JFrame {
     }
     
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        //Todos los txts
+        if (txtNombres.getText().isEmpty() || 
+            txtApellidos.getText().isEmpty() ||
+            txtDireccion.getText().isEmpty() ||
+            txtCorreo.getText().isEmpty() ||
+            txtNumeroDocumento.getText().isEmpty() ||
+            txtTelefono.getText().isEmpty() ||
+            txtSalario.getText().isEmpty() ||
+            txtCargo.getText().isEmpty() ||
+            txtUltimaEmpresa.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // CHK Habilidades
+        if (!chkComunicacion.isSelected() && !chkResolucionProblemas.isSelected() &&
+            !chkLiderazgo.isSelected() && !chkAnalisis.isSelected() &&
+            !chkTrabajoEquipo.isSelected() && !chkAdaptabilidad.isSelected()) {
+
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una habilidad.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // RDB Estado
+        if (!rdbActivo.isSelected() && !rdbInactivo.isSelected() && !rdbSuspendido.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el estado laboral.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // RDB Método de pago
+        if (!rdbEfectivo.isSelected() && !rdbTransferencia.isSelected() && !rdbCheque.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un método de pago.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         Empleado empleado = new Empleado();
         empleado.setNombres(txtNombres.getText());
         empleado.setApellidos(txtApellidos.getText());
@@ -1016,8 +1121,10 @@ public class Form extends javax.swing.JFrame {
         empleado.setResolucionProblemas(chkResolucionProblemas.isSelected());
         empleado.setLiderazgo(chkLiderazgo.isSelected());
         empleado.setAdaptabilidad(chkAdaptabilidad.isSelected());
-        
+
+        empleadoDao.insertarEmpleado(empleado);        
         cargarDatosEnTabla();
+        limpiar();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -1087,6 +1194,17 @@ public class Form extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    //Eventos de teclado
+    //Nombres
+    private void txtNombresKeyPressed(java.awt.event.KeyEvent evt){
+        if (txtNombres.getText().trim().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtApellidos.requestFocus();
+            }
+        }
+    }                                     
+    
+    //N° Documento
     private void txtNumeroDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoKeyPressed
         if (txtNumeroDocumento.getText().trim().length() > 0){
             if (evt.getKeyCode() == evt.VK_ENTER){
@@ -1094,12 +1212,90 @@ public class Form extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtNumeroDocumentoKeyPressed
-
     private void txtNumeroDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoKeyTyped
         empleadoDao.soloNcarc(8, txtNumeroDocumento, evt);
         empleadoDao.soloTodosNum(evt);
     }//GEN-LAST:event_txtNumeroDocumentoKeyTyped
 
+    //Apellidos
+    private void txtApellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyPressed
+        if (txtApellidos.getText().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtDireccion.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtApellidosKeyPressed
+    private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+        empleadoDao.soloLetras(evt);
+    }//GEN-LAST:event_txtApellidosKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        empleadoDao.soloLetras(evt);
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    //Direccion
+    private void txtDireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyPressed
+        if (txtDireccion.getText().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtCorreo.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtDireccionKeyPressed
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+    }//GEN-LAST:event_txtDireccionKeyTyped
+    //Correo
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        if (txtCorreo.getText().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtNumeroDocumento.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtCorreoKeyPressed
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+        empleadoDao.soloCorreo(50, txtCorreo, evt);
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    //Telefono
+    private void txtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyPressed
+        if (txtTelefono.getText().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtInformacionAdicional.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtTelefonoKeyPressed
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        empleadoDao.soloNcarc(9, txtTelefono, evt);
+        empleadoDao.soloTodosNum(evt);
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+    
+    //Informacion adicional
+    private void txtInformacionAdicionalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInformacionAdicionalKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER){
+            txtSalario.requestFocus();
+        }
+    }//GEN-LAST:event_txtInformacionAdicionalKeyPressed
+
+    //Salario
+    private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
+        if (txtSalario.getText().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtCargo.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtSalarioKeyPressed
+    private void txtSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyTyped
+        empleadoDao.soloDecimales(evt);
+    }//GEN-LAST:event_txtSalarioKeyTyped
+
+    //Cargo
+    private void txtCargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargoKeyPressed
+        if (txtCargo.getText().length() > 0){
+            if (evt.getKeyCode() == evt.VK_ENTER){
+                txtUltimaEmpresa.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtCargoKeyPressed
+    
     private void limpiar(){
         txtNombres.setText("");
         txtApellidos.setText("");
@@ -1137,6 +1333,7 @@ public class Form extends javax.swing.JFrame {
         chkLiderazgo.setSelected(false);
         chkAdaptabilidad.setSelected(false);
     }
+    
     private void setEstadoCivil(String estadoCivil) {
         if ("Soltero".equals(estadoCivil)) {
             rdbSoltero.setSelected(true);

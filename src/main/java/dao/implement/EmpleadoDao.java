@@ -33,5 +33,11 @@ public interface EmpleadoDao  {
     
     public void soloNcarc(int numcarac, JTextField tf, KeyEvent e);
     
-     public void soloTodosNum (KeyEvent e);
+    public void soloTodosNum (KeyEvent e);
+
+    public void soloLetras(KeyEvent e);
+
+    public void soloCorreo(int numcarac, JTextField tf, KeyEvent e);
+
+    public void soloDecimales(KeyEvent e);
 }

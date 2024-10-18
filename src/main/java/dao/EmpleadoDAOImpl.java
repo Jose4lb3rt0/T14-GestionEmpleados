@@ -204,4 +204,28 @@ public class EmpleadoDAOImpl implements EmpleadoDao {
             e.consume();
         }
     }
+
+    @Override
+    public void soloLetras (KeyEvent e){
+        char c = e.getKeyChar();
+        if ((c < 65 || c > 90) && (c < 97 || c > 122) && (c != 32)){
+            e.consume();
+        }
+    }
+
+    @Override
+    public void soloCorreo(int numcarac, JTextField tf, KeyEvent e){
+        char c = e.getKeyChar();
+        if ((c < 48 || c > 57) && (c < 65 || c > 90) && (c < 97 || c > 122) && (c != 64) && (c != 46) && (c != 95)){
+            e.consume();
+        }
+    }
+
+    @Override
+    public void soloDecimales(KeyEvent e){
+        char c = e.getKeyChar();
+        if ((c < 48 || c > 57) && (c != 46)){
+            e.consume();
+        }
+    }
 }
